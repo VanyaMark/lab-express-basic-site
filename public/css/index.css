@@ -80,7 +80,7 @@ footer {
   
   .typing {
     width: 16ch;
-    animation: typing 2s steps(16), 
+    animation: typing 3s steps(16), 
      blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
