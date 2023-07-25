@@ -1,29 +1,25 @@
-const express = require('express');
+//Import necessary modules:
+const express   = require("express");
+const hbs       = require("hbs");
+const app       = express();
 
-const app = express();
+//Create an instance of the Express application 
+//path - a built-in Node.js module that provides utilities for working with file and directory paths
+const path      = require("path");
 
-//Make everything inside of public available
-app.use(express.static('public'));
+//Set the view engine (handlebars) and views directory
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
 
-// about route
-app.get('/about', (req, res, next) => {
-    res.sendFile(__dirname + '/views/about.html')
-})
+//Serve static files in Public directory
+app.use(express.static(path.join(__dirname, "public")));
 
-// home route
-app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + '/views/home.html')
-})
+//Define routes
+app.get("/", (req, res, next) => res.render("index"));
 
-// photo-gallery route
-app.get('/gallery', (req, res, next) => {
-    res.sendFile(__dirname + '/views/photo-gallery.html')
-})
+app.get("/players", (req, res, next) => res.render("players"));
 
-// works route
-app.get('/works', (req, res, next) => {
-    res.sendFile(__dirname + '/views/works.html')
-})
+app.get("/teams", (req, res, next) => res.render("teams"));
 
-// server started
+// Start server
 app.listen(3000, () => console.log('The Rose app listening on port 3000'));
